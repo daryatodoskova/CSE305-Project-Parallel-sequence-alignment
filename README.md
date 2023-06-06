@@ -21,7 +21,7 @@ To run the file, you must work only on the final_sw.cpp file (the again_sw.cpp f
 Similarly to the way we ran in in class in the terminal write:
 
 ```
-g++ final_sw.cpp -o final_sw
+g++ Smith-Waterman/final_sw.cpp -o final_sw
 ./final_sw file1 file2 int
 ```
 
@@ -29,6 +29,6 @@ Where file1 and file2 are .fasta files that contain a sequence of amino acids an
 For example:
 
 ```
-g++ final_sw.cpp -o final_sw
+g++ Smith-Waterman/final_sw.cpp -o final_sw
 ./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 64
 ``` 
