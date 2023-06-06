@@ -62,7 +62,7 @@ void parallelSmithWaterman(const Sequence& sequence1, const Sequence& sequence2,
 
     initializeMatrix(matrix, rows, cols);
 
-    #pragma omp parallel for
+    // #pragma omp parallel for
     for (int d = 1; d < rows + cols - 1; ++d) {
         int start = std::max(1, d - cols + 1);
         int end = std::min(d, rows - 1);
