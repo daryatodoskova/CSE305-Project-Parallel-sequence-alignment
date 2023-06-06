@@ -6,6 +6,7 @@
 #include <chrono>
 #include <string>
 #include <cmath>
+#include <sstream>
 
 using namespace std;
 
@@ -94,7 +95,8 @@ std::pair<std::string, std::string> traceback(const std::string& sequence1, cons
 
 void smithWaterman(const std::string& seq1, const std::string& seq2,
                    int matchScore, int mismatchScore, int gapPenalty,
-                   std::vector<std::vector<int>>& score, int numThreads) {
+                   std::vector<std::vector<int>>& score, int numThreads) 
+    {
     // Get the lengths of the sequences
     int n = seq1.length();
     int m = seq2.length();
@@ -236,6 +238,8 @@ int main(int argc, char* argv[]) {
     int n = seq1.length();
     int m = seq2.length();
 
+    int chunkSize = ceil(max(n,m) / num);
+
     // Initialize the score matrix
     std::vector<std::vector<int>> score = initializeMatrix(m + 1, n + 1);
 
@@ -262,21 +266,25 @@ int main(int argc, char* argv[]) {
     // Write the output to a file
     writeOutput(seq1, seq2, numThreads, runtime, alignment1, alignment2);
 
-    const string& filename = "output.txt";
+    // const string& filename = "output.txt";
 
-    ofstream outputFile(filename);
+    // ofstream outputFile(filename);
 
-    // Print alignment scoreMatrix
-    for (const auto& row : score) {
-        for (int scoreM : row) {
-            //std::cout << score << "\t";
-            outputFile << scoreM << "\t";
-        }
-        outputFile << endl;
-        //std::cout << std::endl;
-    }
+    // // Print alignment scoreMatrix
+    // for (const auto& row : score) {
+    //     for (int scoreM : row) {
+    //         //std::cout << score << "\t";
+    //         outputFile << scoreM << "\t";
+    //     }
+    //     outputFile << endl;
+    //     //std::cout << std::endl;
+    // }
 
-    outputFile.close();
+    // outputFile.close();
+
+    std::ofstream csvFile("sw.csv", std::ios::app);
+    csvFile << n << "," << m << "," << chunkSize << "," << runtime <<"," << num << "\n";
+    csvFile.close();
 
     return 0;
 }

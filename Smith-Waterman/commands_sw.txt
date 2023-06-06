@@ -1,0 +1,54 @@
+g++ Smith-Waterman/final_sw.cpp -o final_sw
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 1
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 2
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 3
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 4
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 5
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 6
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 7
+./final_sw "tests/big/fibronectin/P02751.fasta" "tests/big/fibronectin/P07589.fasta" 8
+
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 1
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 2
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 3
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 4
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 5
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 6
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 7
+./final_sw "tests/big/midacin/H2QTE8.fasta" "tests/big/midacin/Q9NU22.fasta" 8
+
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 1
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 2
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 3
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 4
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 5
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 6
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 7
+./final_sw "tests/big/nesprin-2/Q6ZWQ0.fasta" "tests/big/nesprin-2/Q8WXH0.fasta" 8
+
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 1
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 2
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 3
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 4
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 5
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 6
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 7
+./final_sw "tests/big/mucin-16/Q8WXI7.fasta" "tests/big/mucin-16/UPI0013634FC0.fasta" 8
+
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 1
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 2
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 3
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 4
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 5
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 6
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 7
+./final_sw "tests/small/atf5/Q6P788.fasta" "tests/small/atf5/Q9Y2D1.fasta" 8
+
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 1
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 2
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 3
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 4
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 5
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 6
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 7
+./final_sw "tests/small/test1/a" "tests/small/test1/b" 8
