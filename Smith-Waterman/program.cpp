@@ -178,105 +178,68 @@ std::string stream_to_seq(std::ifstream& f)
     return seq;
 }
 
-void writeOutput(const std::string& seq1, const std::string& seq2, int numThreads, double runtime, const std::string& alignment1, const std::string& alignment2) {
-    std::ofstream outputFile("sw_comp.txt", std::ios::app);
+void writeAlignmentToFile(const std::string& alignedSeq1, const std::string& alignedSeq2, int comparisonNumber, const std::string& filename) {
+    std::ofstream outputFile(filename, std::ios::app);  // Open the file in append mode
     if (!outputFile) {
-        std::cout << "Failed to open the output file." << std::endl;
+        std::cerr << "Error opening output file!" << std::endl;
         return;
     }
 
-    // outputFile << "Sequences:\n";
-    // outputFile << "Sequence 1: " << seq1 << "\n";
-    // outputFile << "Sequence 2: " << seq2 << "\n";
-
-    outputFile << "Number of Threads: " << numThreads << "\n";
-
-    outputFile << "Alignment:\n";
-    outputFile << "Aligned Sequence 1: " << alignment1 << "\n";
-    outputFile << "Aligned Sequence 2: " << alignment2 << "\n";
-
-    outputFile << "Runtime: " << runtime << " seconds\n";
-
-    outputFile << "-------------------------------------------------------------------\n";
+    outputFile << "Comparison " << comparisonNumber << ":" << std::endl;
+    outputFile << "Aligned Sequence 1: " << alignedSeq1 << std::endl;
+    outputFile << "Aligned Sequence 2: " << alignedSeq2 << std::endl;
+    outputFile << std::endl;  // Add a newline between alignments
 
     outputFile.close();
+    std::cout << "Alignment result for comparison " << comparisonNumber << " appended to " << filename << std::endl;
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 4) {
-        std::cout << "Two file arguments and one integer are required." << std::endl;
+    if (argc < 4) {
+        std::cerr << "Usage: " << argv[0] << " <input_file1> <input_file2> <num_threads>" << std::endl;
+        return 1;
+    }
+
+    std::string inputFilePath1 = argv[1];
+    std::string inputFilePath2 = argv[2];
+    int numThreads = std::stoi(argv[3]);
+
+    std::ifstream inputFile1(inputFilePath1);
+    if (!inputFile1) {
+        std::cerr << "Failed to open input file: " << inputFilePath1 << std::endl;
+        return 1;
+    }
+
+    std::ifstream inputFile2(inputFilePath2);
+    if (!inputFile2) {
+        std::cerr << "Failed to open input file: " << inputFilePath2 << std::endl;
         return 1;
     }
 
     std::string seq1, seq2;
+    if (!(inputFile1 >> seq1) || !(inputFile2 >> seq2)) {
+        std::cerr << "Failed to read sequences from the input files." << std::endl;
+        return 1;
+    }
 
-    // load seqs from file
-    char *nameSeq1 = argv[1];
-    char *nameSeq2 = argv[2];
-    int num = std::stoi(argv[3]);
+    inputFile1.close();
+    inputFile2.close();
 
+    std::vector<std::vector<int>> scoreMatrix;
 
-    std::ifstream StrSeq1;
-    StrSeq1.open(nameSeq1);
-    seq1 = stream_to_seq(StrSeq1);
-
-    std::ifstream StrSeq2;
-    StrSeq2.open(nameSeq2);
-    seq2 = stream_to_seq(StrSeq2);
-
-    // Start the timer
-    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-
-    // Specify the scoring scheme and other parameters
-    int matchScore = 2;
-    int mismatchScore = -1;
-    int gapPenalty = -2;
-
-    // Get the lengths of the sequences
     int n = seq1.length();
     int m = seq2.length();
 
-    // Initialize the score matrix
-    std::vector<std::vector<int>> score = initializeMatrix(m + 1, n + 1);
+    // Perform Smith-Waterman algorithm
+    smithWaterman(seq1, seq2, scoreMatrix, numThreads);
 
-    // DEFINING THE NUMBER OF THREADS
-    int numThreads = num;
+    std::string alignedSeq1, alignedSeq2;
+    tracebackSmithWaterman(seq1, seq2, scoreMatrix, alignedSeq1, alignedSeq2);
 
-    smithWaterman(seq1, seq2, matchScore, mismatchScore, gapPenalty, score, num);
+    std::string outputFilename = "alignment_results.txt";
+    writeAlignmentToFile(alignedSeq1, alignedSeq2, outputFilename);
 
-    // End the timer
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-    // Calculate the elapsed time
-    std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
-    double runtime = duration.count();
-
-    // Print the runtime
-    std::cout << "Runtime: " << runtime << " seconds" << std::endl;
-
-    // Perform traceback to determine the aligned sequences
-    std::pair<std::string, std::string> alignment = traceback(seq1, seq2, score, matchScore, mismatchScore, gapPenalty);
-    std::string alignment1 = alignment.first;
-    std::string alignment2 = alignment.second;
-
-    // Write the output to a file
-    writeOutput(seq1, seq2, numThreads, runtime, alignment1, alignment2);
-
-    const string& filename = "output.txt";
-
-    ofstream outputFile(filename);
-
-    // Print alignment scoreMatrix
-    for (const auto& row : score) {
-        for (int scoreM : row) {
-            //std::cout << score << "\t";
-            outputFile << scoreM << "\t";
-        }
-        outputFile << endl;
-        //std::cout << std::endl;
-    }
-
-    outputFile.close();
+    std::cout << "Alignment result appended to " << outputFilename << std::endl;
 
     return 0;
 }
