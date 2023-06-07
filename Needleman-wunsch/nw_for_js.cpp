@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Runtime: " << runtime << " seconds" << std::endl;
 
-    std::ofstream csvFile("nw.csv", std::ios::app);
+    std::ofstream csvFile("Needleman-wunsch/nw.csv", std::ios::app);
     csvFile << n << "," << m << "," << chunkSize << "," << runtime <<"," << num << "\n";
     csvFile.close();
     return 0;

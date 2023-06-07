@@ -282,7 +282,7 @@ int main(int argc, char* argv[]) {
 
     // outputFile.close();
 
-    std::ofstream csvFile("sw.csv", std::ios::app);
+    std::ofstream csvFile("Smith-Waterman/sw.csv", std::ios::app);
     csvFile << n << "," << m << "," << chunkSize << "," << runtime <<"," << num << "\n";
     csvFile.close();
 
