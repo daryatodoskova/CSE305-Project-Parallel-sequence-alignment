@@ -29,8 +29,6 @@ g++ Smith-Waterman/final_sw.cpp -o final_sw
 ``` 
 ### Other Files
 
-Graphs.ipynb: This Jupyter Notebook is used to plot graphs to compare the different speeds for the algorithms.
+Graphs.ipynb: to plot graphs to compare the different speeds for the algorithms.
 
-commands.cpp: This file is used to take the commands from the command text files in both the Needleman-Wunsch and the Smith-Waterman folders and run them. The objective of this is to automate the process in which we run the commands in the terminal.
-
-sw.csv and nw.csv: Are the csv files that contain the results of running each of the commands from the command text files. The valeus in the csv files are: n (size of sequence 1), m (size of sequence 2), chunksize, runtime, threads
+sw.csv and nw.csv: Are the csv files that contain the results of running each of the commands from the command text files. The values in the csv files are: n (size of sequence 1), m (size of sequence 2), chunksize, runtime, threads
